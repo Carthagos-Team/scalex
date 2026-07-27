@@ -807,7 +807,14 @@ function renderGlow(srcTexture){
 }
 
 /* ---------- sizing ---------- */
+/* ---------- sizing ---------- */
 function resize(){
+  // Fallback: se o canvas ainda nao tiver dimensoes reais no momento exato
+  // desta chamada (comum logo apos o load, antes do layout do hero assentar,
+  // ou quando o canvas esta confinado a um elemento em vez de fixed na
+  // viewport inteira), usa o tamanho da janela em vez de deixar cair pra 0 -
+  // um framebuffer 0x0 trava o WebGL (GL_INVALID_FRAMEBUFFER_OPERATION) e
+  // nunca mais se recupera sozinho.
   const w = stage.clientWidth || window.innerWidth;
   const h = stage.clientHeight || window.innerHeight;
   renderer.setSize(w, h);
@@ -830,6 +837,16 @@ function resize(){
   camera.updateProjectionMatrix();
 }
 window.addEventListener('resize', resize);
+// Observa o proprio elemento (nao so a janela): como o canvas agora fica
+// confinado ao hero (position:absolute, nao mais fixed na viewport inteira),
+// o tamanho dele pode mudar sem a JANELA mudar de tamanho - por exemplo,
+// assim que o layout do hero termina de assentar logo apos o load. Sem isso,
+// se o primeiro resize() pegasse o canvas ainda com 0x0, nada disparava um
+// novo resize depois (o listener de window so reage a resize da JANELA).
+if (typeof ResizeObserver !== 'undefined') {
+  const ro = new ResizeObserver(function () { resize(); });
+  ro.observe(stage);
+}
 resize();
 
 /* ---------- pointer ---------- */
