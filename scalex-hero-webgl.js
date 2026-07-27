@@ -49,7 +49,7 @@ window.COOKED_PARAMS={"px":2,"levels":7,"lens":600,"lensF":4,"lensOn":true,"lens
 /* Guard: so ativa na home real (essa build de canvas so foi pensada pro hero da
    home) e so quando GSAP/ScrollTrigger ja estiverem prontos (carregados nativamente
    pelo Webflow, sem precisar de outro <script src> aqui). */
-if (window.location.pathname !== '/' || !window.gsap || !window.ScrollTrigger) return;
+if (!window.gsap || !window.ScrollTrigger) return;
 /* pristine copy of the page markup, captured before any runtime DOM mutation —
    this is what the Cook button bakes into a console-free export */
 const PRISTINE = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
