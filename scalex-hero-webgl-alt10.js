@@ -873,7 +873,8 @@ function renderGlow(srcTexture){
 
 /* ---------- sizing ---------- */
 function resize(){
-  const w = stage.clientWidth, h = stage.clientHeight;
+  const w = stage.clientWidth || window.innerWidth;
+  const h = stage.clientHeight || window.innerHeight;
   renderer.setSize(w, h);
   const W = Math.floor(w * DPR), H = Math.floor(h * DPR);
   rt.setSize(W, H);
