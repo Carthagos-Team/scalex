@@ -66,11 +66,10 @@ const COL = {
 };
 
 /* ---------- renderer / scene ---------- */
-const stage = document.getElementById('stage');
-const renderer = new THREE.WebGLRenderer({ antialias:false, powerPreference:'high-performance' });
+const stage = document.querySelector('.hero_canvas');
+const renderer = new THREE.WebGLRenderer({ canvas: stage, antialias:false, powerPreference:'high-performance' });
 const DPR = Math.min(window.devicePixelRatio || 1, 1.5);
 renderer.setPixelRatio(DPR);
-stage.appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(COL.bg);
