@@ -101,6 +101,61 @@
   var MAX_WAIT = 4000;  // fail-safe: nunca segura a pagina mais que isso
   var GSAP_WAIT = 3000; // desiste de esperar o GSAP
 
+  /* ---------- motor WebGL da hero: carga adiada ----------
+     O motor (three.min.js + scalex-hero-webgl-alt3.js — a variante que a
+     Home usa hoje; se a Home trocar de variante, atualizar aqui tambem)
+     tem DOIS relogios internos independentes de qualquer coisa que a
+     pagina faca:
+       - "intro" (window.SCALEX.replayIntro() reseta): padrao expande,
+         tiles aparecem em stagger, ~2.4-3.5s.
+       - "reveal" (SEM api publica de reset): uma mascara em X que se
+         abre via fade, mas so COMEÇA depois de gRevealDelay segundos
+         reais desde o mount do script — 1 a 4s, direto do config.
+     Em paginas sem loader (Ethos etc.) os dois relogios comecam a contar
+     no load da pagina, exatamente quando o texto tambem e liberado —
+     por isso o fundo "anima junto" com o texto la.
+     Na Home, os scripts do motor carregavam estaticos no footer, ou
+     seja, os relogios comecavam a contar ~2.5s ANTES da chapa abrir —
+     quando o corte finalmente revela a hero, o "intro" ja foi resetado
+     por replayIntro() (abaixo, mantido como reforço), mas o "reveal"
+     nao tem API de reset e ja pode ter disparado fora de sincronia.
+     A correcao robusta: nao carregar o motor estaticamente. Os dois
+     <script> dele foram REMOVIDOS do footer da Home (ver INSTALL) e
+     este loader os injeta agora, no exato instante do releaseHero() —
+     os relogios do motor so comecam a contar dali, em sincronia com o
+     texto, reproduzindo fielmente o que acontece nas paginas sem loader.
+     O <link rel=preload> abaixo evita que isso custe tempo de rede: os
+     arquivos ja estao no cache do navegador bem antes do release. */
+  var WEBGL_URLS = [
+    'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js',
+    'https://cdn.jsdelivr.net/gh/samuelcardoso-cc/scalex@main/scalex-hero-webgl-alt3.js'
+  ];
+  var webglInjected = false;
+
+  function preloadWebgl() {
+    var head = document.head;
+    if (!head) return;
+    for (var i = 0; i < WEBGL_URLS.length; i++) {
+      var link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'script';
+      link.href = WEBGL_URLS[i];
+      head.appendChild(link);
+    }
+  }
+
+  function loadWebglNow() {
+    if (webglInjected) return;
+    webglInjected = true;
+    var parent = document.body || document.head;
+    for (var i = 0; i < WEBGL_URLS.length; i++) {
+      var s = document.createElement('script');
+      s.src = WEBGL_URLS[i];
+      s.async = false; // preserva a ordem: three.min.js antes do motor
+      parent.appendChild(s);
+    }
+  }
+
   // Elementos da hero mantidos escondidos enquanto o loader roda, para
   // nao piscarem por dentro do recorte antes de animarem. Seletores
   // expandidos de proposito: :is() com combinador (".hero_actions > *")
@@ -268,6 +323,7 @@
     // ficaria azul atras do recorte e bloquearia a hero
     root.classList.add('sx-mounted');
     if (window.lenis && window.lenis.stop) window.lenis.stop();
+    preloadWebgl();
   }
 
   if (document.body) mount();
@@ -301,19 +357,16 @@
   function releaseHero() {
     resolveHero();
 
-    // O motor WebGL (three.min.js + scalex-hero-webgl-alt*.js) carrega e
-    // comeca a rodar sozinho desde o load da pagina, atras da chapa — sua
-    // propria animacao de intro (introDur ~2.4-3.5s: padrao expande, tiles
-    // aparecem em stagger) ja teria terminado escondida por baixo do
-    // loader. Em paginas SEM loader (ex. /ethos) e por isso que o fundo
-    // WebGL "anima junto" com o texto: o intro dele começa exatamente
-    // quando a pagina carrega, ao mesmo tempo que o texto.
-    // window.SCALEX.replayIntro() (exposto pelo motor) reseta esse
-    // progresso e reroda a intro do zero — chamado aqui para que ela
-    // toque em sincronia com a liberacao do texto, reproduzindo o mesmo
-    // efeito.
+    // Carrega o motor WebGL agora (ver nota grande acima, perto de
+    // WEBGL_URLS) — os relogios internos dele (intro + reveal) so
+    // comecam a contar a partir deste instante, em sincronia com o
+    // texto. Reforco defensivo: se por algum motivo o motor JA estava
+    // rodando (ex. tags estaticas nao removidas), replayIntro() ainda
+    // reseta o que ele expoe publicamente.
     if (window.SCALEX && typeof window.SCALEX.replayIntro === 'function') {
       try { window.SCALEX.replayIntro(); } catch (e) {}
+    } else {
+      loadWebglNow();
     }
 
     // A hero aplica seus gsap.set() em microtask; solta o hold no frame
