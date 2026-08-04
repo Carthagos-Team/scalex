@@ -300,6 +300,22 @@
 
   function releaseHero() {
     resolveHero();
+
+    // O motor WebGL (three.min.js + scalex-hero-webgl-alt*.js) carrega e
+    // comeca a rodar sozinho desde o load da pagina, atras da chapa — sua
+    // propria animacao de intro (introDur ~2.4-3.5s: padrao expande, tiles
+    // aparecem em stagger) ja teria terminado escondida por baixo do
+    // loader. Em paginas SEM loader (ex. /ethos) e por isso que o fundo
+    // WebGL "anima junto" com o texto: o intro dele começa exatamente
+    // quando a pagina carrega, ao mesmo tempo que o texto.
+    // window.SCALEX.replayIntro() (exposto pelo motor) reseta esse
+    // progresso e reroda a intro do zero — chamado aqui para que ela
+    // toque em sincronia com a liberacao do texto, reproduzindo o mesmo
+    // efeito.
+    if (window.SCALEX && typeof window.SCALEX.replayIntro === 'function') {
+      try { window.SCALEX.replayIntro(); } catch (e) {}
+    }
+
     // A hero aplica seus gsap.set() em microtask; solta o hold no frame
     // seguinte para nao existir 1 frame com o conteudo no estado final.
     requestAnimationFrame(function () {
