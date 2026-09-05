@@ -1,10 +1,10 @@
 /* ScaleX — Heartbeat Sync
-   Faixa de texto/imagens seguindo um path SVG que reage ao scroll e ao
-   wheel (GSAP + ScrollTrigger + MorphSVGPlugin). Aplicado hoje apenas
-   na Home. Consolidado a partir de 6 scripts que existiam separados no
-   Webflow so por causa do limite de 2000 caracteres por script
-   registrado — mantida a mesma ordem de execucao de antes (estilos ->
-   Part1..Part5, todos operando sobre o namespace window.SXHB).
+   Faixa de texto/imagens seguindo um path SVG reto e sincronizada com
+   o scroll (GSAP + ScrollTrigger). Aplicado hoje apenas na Home.
+   Consolidado a partir de 6 scripts que existiam separados no Webflow
+   so por causa do limite de 2000 caracteres por script registrado —
+   mantida a mesma ordem de execucao de antes (estilos -> Part1..Part5,
+   todos operando sobre o namespace window.SXHB).
 */
 
 (function () {
@@ -101,12 +101,8 @@ window.SXHB = window.SXHB || {};
       cursor -= H.GAP;
     }
   };
-  H.bumpAmplitude = function (amount) {
-    H.amplitudeTo(Math.abs(amount));
-    clearTimeout(H.wheelTimeout);
-    H.wheelTimeout = setTimeout(function () { H.amplitudeTo(0); }, 66);
-  };
-  H.handleWheel = function (e) { H.bumpAmplitude(e.deltaY); };
+  H.bumpAmplitude = function () {};
+  H.handleWheel = function () {};
 })(window.SXHB);
 (function (H) {
   H.boot = function () {
@@ -120,18 +116,6 @@ window.SXHB = window.SXHB || {};
     if (!H.pinHeight || !H.container || !H.svgPath || !H.track) return;
     H.booted = true;
     H.root = root;
-    H.morphTl = gsap.timeline({ paused: true }).to('#heartbeat-sync-line', {
-      morphSVG: '#heartbeat-sync-wave', duration: 1, ease: 'none'
-    });
-    var amplitude = { value: 0 };
-    H.amplitudeTo = gsap.quickTo(amplitude, 'value', {
-      duration: 1,
-      ease: 'power2',
-      onUpdate: function () {
-        H.morphTl.progress(gsap.utils.clamp(0, 1, amplitude.value / 50));
-        H.update();
-      }
-    });
     var fontJobs = [].slice.call(H.track.querySelectorAll('text.heartbeat-sync__segment')).map(function (el) {
       return document.fonts.load('500 ' + (el.getAttribute('font-size') || '350') + 'px LayGrotesk');
     });
@@ -156,18 +140,14 @@ window.SXHB = window.SXHB || {};
       pin: H.container,
       scrub: true,
       onUpdate: function (self) {
-        var scroll = self.scroll();
-        if (H.prevScroll != null) H.bumpAmplitude(scroll - H.prevScroll);
-        H.prevScroll = scroll;
         H.scrollProgress = self.progress;
         H.update();
       }
     });
-    H.root.addEventListener('wheel', H.handleWheel, { passive: true });
     ScrollTrigger.refresh();
   };
   (function wait() {
-    if (window.gsap && window.ScrollTrigger && window.MorphSVGPlugin && H.boot) H.boot();
+    if (window.gsap && window.ScrollTrigger && H.boot) H.boot();
     else setTimeout(wait, 50);
   })();
 })(window.SXHB);
