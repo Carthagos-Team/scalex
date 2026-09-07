@@ -110,10 +110,13 @@ document.addEventListener('visibilitychange', () => { _qVis = !document.hidden; 
 
 /* ---------- renderer / scene ---------- */
 const stage = document.getElementById('stage');
-const renderer = new THREE.WebGLRenderer({ antialias:false, powerPreference: Q.mobile ? 'default' : 'high-performance' });
+const __sxOwnCanvas = stage.tagName === 'CANVAS';
+const renderer = new THREE.WebGLRenderer(__sxOwnCanvas ? { canvas: stage, antialias:false,
+  powerPreference: Q.mobile ? 'default' : 'high-performance' } : { antialias:false,
+  powerPreference: Q.mobile ? 'default' : 'high-performance' });
 const DPR = Math.min(window.devicePixelRatio || 1, Q.dpr);
 renderer.setPixelRatio(DPR);
-stage.appendChild(renderer.domElement);
+__sxOwnCanvas || stage.appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(COL.bg);
@@ -1593,7 +1596,7 @@ function renderGlow(srcTexture){
 /* ---------- sizing ---------- */
 function resize(){
   const w = stage.clientWidth, h = stage.clientHeight;
-  renderer.setSize(w, h);
+  renderer.setSize(w, h, !__sxOwnCanvas);
   const W = Math.floor(w * DPR), H = Math.floor(h * DPR);
   rt.setSize(W, H);
   auxRT.setSize(W, H);
