@@ -1,4 +1,4 @@
-/*! ScaleX hero · self-contained · baked 2026-09-07 12:52 UTC
+/*! ScaleX hero · self-contained · baked 2026-09-07 14:14 UTC
  *
  *  ONE FILE. Host it, then paste exactly this into Webflow, Page Settings, Before </body>:
  *
@@ -25,7 +25,8 @@
  *  `npx terser scalex-hero.js -c -m -o scalex-hero.js` if you want it smaller.
  */
 window.__SCALEX_SELF_CONTAINED = true;
-var __SCALEX_BAKED = {"px":3,"levels":6,"lens":260,"lensF":0.75,"lensOn":false,"lensStr":1.15,"lensFx":{"reveal":true,"brighten":false,"invert":false,"desat":false,"ripple":false,"condense":false},"par":2,"drift":3,"dither":true,"comp":"C","ditherMode":"off","dot":1.3,"glow":0.8,"glowR":0.6,"glowOn":true,"order":"ditherTop","ui":true,"introDur":2.4,"introStagger":0.6,"introEaseIn":2,"introEaseOut":2,"introOffX":0,"introOffY":0,"introOffZ":0,"introSpin":18,"partFan":false,"echoOn":false,"introMode":"fan","introDelay":0,"introSpinX":0,"introSpinY":0,"introScale":1,"introOffX1":0,"introOffY1":0,"introOffZ1":0,"introSpinX1":0,"introSpinY1":0,"introSpin1":18,"introScale1":1,"mouseOn":true,"mMove":0.6,"mScale":0.4,"mRot":0.5,"mDelay":0.35,"mInvert":false,"mZPush":0,"mRoll":0,"mReact":0,"mReactR":220,"mCasAmt":0.9,"mCasDelay":0.4,"scrTurn":0.5,"scrDolly":7.1,"scrRise":2.2,"scrDelay":0.15,"scrCas":1,"bScroll":"rotate","bAxis":"y","bRot":83,"bScale":0.6,"grHue":0,"grSat":1,"grBright":1,"tintOn":false,"tintA":"#955AE6","tintB":"#4C2CAB","tintAmt":1,"tintDesat":1,"tintGain":2,"tintAngle":-15,"gradOn":true,"gradA":"#955AE6","gradB":"#4C2CAB","gradAngle":-35,"gradGain":1.8,"blobOn":true,"blobSize":820,"blobOp":0.55,"blobFeather":60,"gCell":32,"gBase":0.2,"gBright":1.6,"gScale":0.3,"gMaskR":200,"gMaskShape":"x","gVig":1,"gVigR":0.3,"gXRotate":0,"gIntroDur":3,"gEaseIn":2,"gEaseOut":2,"gIntroDir":"leftRight","gExpandOn":true,"gExpandFrom":0.6,"gExpandDur":2,"gXFrom":0.2,"gXSpin":0,"gIntroMode":"slide","gStagger":0.5,"gTrail":0,"gFieldX":0,"gFieldY":220,"gMaskOffX":-1209,"gMaskOffY":-1,"gEaseMode":"curve","gC1x":0.4,"gC1y":-0.115,"gC2x":0.6,"gC2y":1.115,"gMEaseMode":"curve","gMC1x":0.37,"gMC1y":0.155,"gMC2x":0.194,"gMC2y":0.942,"gTileOffX":0,"gTileOffY":70,"gTileSpin":0,"gTileScale":0.7,"gTileFade":0.35,"gTileOffX1":0,"gTileOffY1":-70,"gTileSpin1":0,"gTileScale1":0.7,"gTileFade1":0.35,"gRot":0,"gMRot":0,"gGap":0.24,"gTileSc":1.75,"gXSize":4.5,"gXFeather":0.04,"gMaskOp":0.6,"gGridOpIn":1,"gGridOpOut":1,"gWaveOn":false,"gWaveAmp":10,"gWaveFreq":1.6,"gWaveSpeed":1,"gWaveCursor":true,"gPushOn":false,"gPushAmt":30,"gGradOn":true,"gGradA":"#6b6cff","gGradB":"#6b6cff","gGradAngle":-35,"gGradGain":1,"gScrOn":true,"gScrSlide":400,"gScrMask":0.5,"gScrFade":0.1,"gScrGlow":3.45,"gScrEase":2.1,"gPTrig":"both","gPFrom":"fixed","gPShape":"logo","gPRegion":"all","gPSpeed":17,"gPWidth":6.8,"gPThick":483,"gPFadeIn":0.5,"gPFadeOut":1,"gPStart":0,"gPBirth":"center","gPRot":0,"gPAnchorX":0.537109375,"gPAnchorY":0.5042145593869731,"gPAnchorOn":true,"gPDilOn":false,"gPDilate":2,"gPGainIn":0.03,"gPGainOut":1.4,"gPHead":1,"gPCol":"#a187e8","gPReach":2,"gPGrow":1,"gPHue":0.4,"gPLife":4,"gPFirst":3,"gPAuto":7,"gPAutoStr":1,"gQOn":false,"gQSteps":6,"gPar":0.2,"gScaleM":0.005,"gSphere":0,"gDelay":0.3,"gMaskDelay":-2,"gMaskEase":false,"gRevealDur":3,"gRevealDelay":0,"gRevealEase":1,"gRevealMode":"fade","gMouseMode":"parallax","gParAmt":10,"gXFade":1,"gMaskAX":0.5296875,"gMaskAY":0.49961685823754787,"gMaskAnchorOn":true,"iters":10,"s0":1.46,"s1":1.3,"p0x":-1.55,"p0y":1.15,"p0z":-0.3,"p1x":0,"p1y":3.85,"p1z":9.3,"r0x":0,"r0y":0,"r0z":3,"r1x":0,"r1y":0,"r1z":-2,"delayD":0,"delayS":0,"skew":0,"stx":1,"sty":1,"frontFade":0.45,"opMul":1,"tintHold":0};
+window.__SCALEX_BUILD = "50.ai8bzg";
+var __SCALEX_BAKED = {"px":3,"levels":6,"lens":260,"lensF":0.75,"lensOn":false,"lensStr":1.15,"lensFx":{"reveal":true,"brighten":false,"invert":false,"desat":false,"ripple":false,"condense":false},"par":2,"drift":3,"dither":true,"comp":"C","ditherMode":"off","dot":1.3,"glow":0.8,"glowR":0.6,"glowOn":true,"order":"ditherTop","ui":true,"introDur":2.4,"introStagger":0.6,"introEaseIn":2,"introEaseOut":2,"introOffX":0,"introOffY":0,"introOffZ":0,"introSpin":18,"partFan":false,"echoOn":false,"introMode":"fan","introDelay":0,"introSpinX":0,"introSpinY":0,"introScale":1,"introOffX1":0,"introOffY1":0,"introOffZ1":0,"introSpinX1":0,"introSpinY1":0,"introSpin1":18,"introScale1":1,"mouseOn":true,"mMove":0.6,"mScale":0.4,"mRot":0.5,"mDelay":0.35,"mInvert":false,"mZPush":0,"mRoll":0,"mReact":0,"mReactR":220,"mCasAmt":0.9,"mCasDelay":0.4,"scrTurn":0.5,"scrDolly":7.1,"scrRise":2.2,"scrDelay":0.15,"scrCas":1,"bScroll":"rotate","bAxis":"y","bRot":83,"bScale":0.6,"grHue":0,"grSat":1,"grBright":1,"tintOn":false,"tintA":"#955AE6","tintB":"#4C2CAB","tintAmt":1,"tintDesat":1,"tintGain":2,"tintAngle":-15,"gradOn":true,"gradA":"#955AE6","gradB":"#4C2CAB","gradAngle":-35,"gradGain":1.8,"blobOn":true,"blobSize":820,"blobOp":0.55,"blobFeather":60,"gCell":32,"gBase":0.17,"gBright":1.6,"gScale":0.3,"gMaskR":200,"gMaskShape":"x","gVig":1,"gVigR":0.3,"gXRotate":0,"gIntroDur":4,"gEaseIn":2,"gEaseOut":2,"gIntroDir":"leftRight","gExpandOn":true,"gExpandFrom":0.6,"gExpandDur":2,"gXFrom":0.2,"gXSpin":0,"gIntroMode":"slide","gStagger":0.5,"gTrail":0,"gFieldX":0,"gFieldY":220,"gMaskOffX":-1209,"gMaskOffY":-1,"gEaseMode":"curve","gC1x":0.4,"gC1y":-0.115,"gC2x":0.6,"gC2y":1.115,"gMEaseMode":"curve","gMC1x":0.37,"gMC1y":0.155,"gMC2x":0.194,"gMC2y":0.942,"gTileOffX":0,"gTileOffY":70,"gTileSpin":0,"gTileScale":0.7,"gTileFade":0.35,"gTileOffX1":0,"gTileOffY1":-70,"gTileSpin1":0,"gTileScale1":0.7,"gTileFade1":0.35,"gRot":0,"gMRot":0,"gGap":0.24,"gTileSc":1.75,"gXSize":4.5,"gXFeather":0.04,"gMaskOp":0.35,"gGridOpIn":1,"gGridOpOut":1,"gWaveOn":false,"gWaveAmp":10,"gWaveFreq":1.6,"gWaveSpeed":1,"gWaveCursor":true,"gPushOn":false,"gPushAmt":30,"gGradOn":true,"gGradA":"#6b6cff","gGradB":"#6b6cff","gGradAngle":-35,"gGradGain":1,"gScrOn":true,"gScrSlide":400,"gScrMask":0.5,"gScrFade":0.1,"gScrGlow":3.45,"gScrEase":2.1,"gPTrig":"both","gPFrom":"fixed","gPShape":"logo","gPRegion":"all","gPSpeed":17,"gPWidth":6.8,"gPThick":483,"gPFadeIn":0.5,"gPFadeOut":1,"gPStart":0,"gPBirth":"center","gPRot":0,"gPAnchorX":0.537109375,"gPAnchorY":0.5042145593869731,"gPAnchorOn":true,"gPDilOn":false,"gPDilate":2,"gPGainIn":0.03,"gPGainOut":1.4,"gPHead":1,"gPCol":"#a187e8","gPReach":2,"gPGrow":1,"gPHue":0.4,"gPLife":4,"gPFirst":3,"gPAuto":7,"gPAutoStr":1,"gQOn":false,"gQSteps":6,"gPar":0.2,"gScaleM":0.005,"gSphere":0,"gDelay":0.3,"gMaskDelay":-2,"gMaskEase":false,"gRevealDur":3,"gRevealDelay":1,"gRevealEase":1,"gRevealMode":"fade","gMouseMode":"parallax","gParAmt":10,"gXFade":1,"gMaskAX":0.533984375,"gMaskAY":0.5057471264367817,"gMaskAnchorOn":true,"iters":10,"s0":1.46,"s1":1.3,"p0x":-1.55,"p0y":1.15,"p0z":-0.3,"p1x":0,"p1y":3.85,"p1z":9.3,"r0x":0,"r0y":0,"r0z":3,"r1x":0,"r1y":0,"r1z":-2,"delayD":0,"delayS":0,"skew":0,"stx":1,"sty":1,"frontFade":0.45,"opMul":1,"tintHold":0};
 var __SCALEX_P = Object.assign({}, __SCALEX_BAKED, window.COOKED_PARAMS || {});
 (function(){
   var NEED = [
@@ -67,6 +68,20 @@ const HAS_CONSOLE = !!document.getElementById('panel');
 const PRISTINE = HAS_CONSOLE ? ('<!DOCTYPE html>\n' + document.documentElement.outerHTML) : '';
 // textContent is empty for an external <script>, which is exactly the deployed case
 const SELF_JS = HAS_CONSOLE && document.currentScript ? document.currentScript.textContent : '';
+/* ---------- build stamp -------------------------------------------------------------------
+   Three artifacts come out of this file and they drift: an engine deployed without its params,
+   a v01 mistaken for a rev01. A hash of the console's own source is a cheap, exact identity —
+   it changes when and only when the engine changes, needs no build step, and every artifact
+   carries the same one, so a test page can say "this engine is not from your console". */
+function fnv1a(str){
+  let h = 0x811c9dc5;
+  for (let i = 0; i < str.length; i++){ h ^= str.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; }
+  return h.toString(36);
+}
+// In a bake the literal is injected before the engine runs, so it wins; in the console the
+// hash is computed live off the source that is executing right now.
+const BUILD = window.__SCALEX_BUILD || ('50.' + (SELF_JS ? fnv1a(SELF_JS) : 'nosrc'));
+window.__SCALEX_BUILD = BUILD;
 const PRM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ---------- palette (sampled from bg_elemeng_dither.png) ---------- */
@@ -2270,7 +2285,8 @@ if (PRM && $('uDrift')) $('uDrift').value = 0;
 /* ---------- COOK: bake current state into a console-free standalone html ---------- */
 function cookString(){
   let html = PRISTINE.replace(/<aside class="panel"[\s\S]*?<\/aside>/, '');
-  const inject = '<scr' + 'ipt>window.COOKED_PARAMS=' + JSON.stringify(exportParams()) + ';</scr' + 'ipt>\n';
+  const inject = '<scr' + 'ipt>window.__SCALEX_BUILD=' + JSON.stringify(BUILD)
+               + ';window.COOKED_PARAMS=' + JSON.stringify(exportParams()) + ';</scr' + 'ipt>\n';
   html = html.replace('<script', inject + '<script');   // before the first script tag
   return html;
 }
@@ -2296,6 +2312,7 @@ function cookReview(){
    the philosophy section, and the console. In Webflow those are real elements built by
    hand, so shipping them as baked markup would only fight the site.                      */
 const WF_JS_NAME = 'scalex-hero.js';
+const TEST_PAGE = [];
 function webflowEngine(){
   if (!SELF_JS) return '';
   const stamp = new Date().toISOString().slice(0, 16).replace('T', ' ');
@@ -2309,6 +2326,7 @@ function webflowEngine(){
   // wrong or half-update. The engine fetches what it needs, in order, and only if absent.
   const boot =
     'window.__SCALEX_SELF_CONTAINED = true;\n' +
+    'window.__SCALEX_BUILD = ' + JSON.stringify(BUILD) + ';\n' +
     'var __SCALEX_BAKED = ' + baked + ';\n' +
     'var __SCALEX_P = Object.assign({}, __SCALEX_BAKED, window.COOKED_PARAMS || {});\n' +
     '(function(){\n' +
@@ -2362,38 +2380,23 @@ function webflowEngine(){
     + ' */\n'
     + boot
     + 'function __scalexMain(){\n'
-    + SELF_JS.replace(/^\s+/, '').replace('}, window.COOKED_PARAMS || {});', '}, __SCALEX_P);')
+    + SELF_JS.replace(/^\s+/, '')
+             .replace('}, window.COOKED_PARAMS || {});', '}, __SCALEX_P);')
+             // the test-page template is console furniture; it has no business in a deployed file
+             .replace(/\/\*TESTPAGE_START\*\/[\s\S]*?\/\*TESTPAGE_END\*\//, '')
     + '\n}\n';
 }
-function webflowEmbed(srcUrl){
-  const q = { pauseOffscreen: true };
-  const S = '<scr' + 'ipt', E = '</scr' + 'ipt>';
-  const cdn = u => S + ' src="' + u + '">' + E;
-  const body = [
-    '<!-- ScaleX hero · Webflow -> Page Settings -> Before </body> -->',
-    '<!-- 1. host ' + WF_JS_NAME + ' and replace SRC below with its URL -->',
-    '<!-- 2. rebuild the navbar and the headline as real Webflow elements: on the -->',
-    '<!--    prototype they are Figma vectors, so a screen reader and Google see nothing -->',
-    '<!-- 3. the hero needs a following section for the scroll transform to have a range; -->',
-    '<!--    point SCALEX_SCROLL_TRIGGER at it, or leave it and raw page scroll is used -->',
-    '<!-- 4. WebGL does not render in the Designer canvas, only in Preview and published -->',
-    '<!-- 5. Webflow ships jQuery 3.5.1 on every site. Nothing here touches it. -->',
-    cdn('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js'),
-    cdn('https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js'),
-    cdn('https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js'),
-    S + '>',
-    '  // add tier:"low" to force the mobile path; dpr / maxIters / fps also accepted',
-    '  window.SCALEX_QUALITY = ' + JSON.stringify(q) + ';',
-    '  // the section that gives the hero scroll transform its range',
-    '  // window.SCALEX_SCROLL_TRIGGER = ".your-next-section";',
-    '  // every dial from the console. Safe to edit here without touching the engine file.',
-    '  window.COOKED_PARAMS = ' + JSON.stringify(exportParams()) + ';',
-    E,
-    S + ' src="' + srcUrl + '" defer>' + E,
-    ''
-  ].join('\n');
-  return '<!-- ' + body.length + ' characters of paste block (this line excluded). '
-       + 'Webflow allows 50000 per field. -->\n' + body;
+/* The harness is emitted from the console so it cannot fall behind the engine: it is stamped
+   with this build, and it says so when the .js you drop on it came from a different one. */
+function testPageString(){
+  return TEST_PAGE.join('\n').replace('/*BUILD*/null', JSON.stringify(BUILD));
+}
+function cookTestPage(){
+  const html = testPageString();
+  downloadBlob(new Blob([html], { type: 'text/html' }), 'scalex-hero-test.html');
+  const note = $('cookNote');
+  if (note) note.textContent = 'baked scalex-hero-test.html (' + Math.round(html.length / 1024)
+    + ' kb, build ' + BUILD + '). open it and drop a baked .js on it.';
 }
 function cookWebflow(){
   syncComp();
@@ -2410,12 +2413,15 @@ function cookWebflow(){
   if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(tag).catch(() => {});
   const note = $('cookNote');
   if (note) note.textContent = 'baked ' + WF_JS_NAME + ' (' + Math.round(engine.length / 1024)
-    + ' kb, params included). one file. the single paste line is on your clipboard.';
+    + ' kb, params included, build ' + BUILD + '). one file. paste line on your clipboard.';
 }
 if ($('cookBtn')) $('cookBtn').addEventListener('click', cookReview);
 if ($('cookWfBtn')) $('cookWfBtn').addEventListener('click', cookWebflow);
+if ($('cookTestBtn')) $('cookTestBtn').addEventListener('click', cookTestPage);
+if ($('buildNote')) $('buildNote').textContent = 'build ' + BUILD;
 window.SCALEX.cookString = cookString;
-window.SCALEX.cookWebflow = { engine: webflowEngine, embed: webflowEmbed };
+window.SCALEX.cookWebflow = { engine: webflowEngine, testPage: testPageString };
+window.SCALEX.build = BUILD;
 
 function downloadBlob(blob, filename){
   const a = document.createElement('a');
