@@ -57,16 +57,26 @@
     // Injetado via onReady além da tentativa imediata: se este script for
     // avaliado antes de <head> existir, appendChild em null lança e a regra
     // some silenciosamente (foi exatamente o que aconteceu no primeiro teste).
-    // touch-action sozinho NAO resolve: o handler de 1 dedo do jsvectormap
+    // CAUSA RAIZ: jsvectormap.min.css traz a regra GLOBAL E SEM ESCOPO
+    //     svg { -ms-touch-action: none; touch-action: none }
+    // que aplica touch-action:none a TODO <svg> da pagina — badges Lottie,
+    // icones, logos, o grafico do heartbeat, setas. Onde o dedo cair num svg,
+    // o scroll vertical morre. Sao dezenas de zonas mortas pela pagina.
+    // Medido com dedo controlado (dispatchTouchEvent passo a passo): na faixa
+    // y6000-6999 a eficiencia do scroll era de 1% — o dedo pediu 5824px e a
+    // pagina andou 39px.
+    //
+    // Alem disso, o container do mapa tem handler proprio: com 1 dedo ele
     // arrasta o mapa (transX/transY) e chama preventDefault() num listener
-    // nao-passivo, cancelando o scroll da pagina. Testado: com pan-y a pagina
-    // continuava congelada. Como o mapa aqui e decorativo — o codigo da Home
-    // so pinta regioes, com zoomOnScroll:false, zoomButtons:false e nenhum
-    // handler de clique — tira-lo do caminho do toque e o que de fato libera
-    // o scroll. Perde-se apenas o tooltip por toque, que ja era marginal.
+    // nao-passivo. Ai touch-action sozinho nao basta — testado. Como o mapa
+    // aqui e decorativo (o codigo da Home so pinta regioes, com
+    // zoomOnScroll:false, zoomButtons:false e nenhum handler de clique),
+    // tira-lo do caminho do toque e o que libera o scroll. Perde-se so o
+    // tooltip por toque.
     var MAP_CSS =
       '@media (pointer: coarse){' +
-      '.jvm-container{touch-action:pan-y !important;pointer-events:none !important}' +
+      'svg{touch-action:auto !important}' +
+      '.jvm-container,.jvm-container svg{touch-action:pan-y !important;pointer-events:none !important}' +
       '}';
 
     var injectMapCss = function () {
