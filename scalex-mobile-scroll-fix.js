@@ -232,4 +232,86 @@
       });
     } catch (e) {}
   });
+
+  /* ---------------------------------------------------------------------
+   * [A4] Adiar ScrollTrigger.refresh() enquanto o scroll estiver em curso.
+   *
+   * No iOS, um scroll programatico durante o momentum o CANCELA. E medido no
+   * aparelho (overlay ?sxdebug=1, dois videos da mesma sessao):
+   *
+   *   PROG = 3 x REFRESH, exato em TODAS as amostras (4/12, 5/15, 7/21,
+   *   8/24, 10/30, 12/36). Ou seja: cada refresh escreve scrollTop 3 vezes,
+   *   e NAO existe nenhuma outra fonte de scroll programatico nesta pagina.
+   *
+   *   1a descida (trava): 8 refreshes em 10s  = 0,80/s
+   *   2a descida (lisa):  2 refreshes em 21s  = 0,095/s   -> 8,4x menos
+   *
+   * A frequencia segue o carregamento das imagens (img pendentes 22->8 na 1a
+   * descida, 8->8 na 2a), porque refreshOnLazyImages() no footer do site
+   * chama refresh() a cada `load` e nao tem gate de mobile.
+   *
+   * IMPORTANTE, para quem ler depois: a main thread NAO e o problema. Medido
+   * tres vezes no aparelho: pior frame 55-64ms, ZERO frames >100ms, 0,1-0,3s
+   * de bloqueio total. O custo do refresh (0,2-4ms) nunca foi a questao — o
+   * efeito colateral de reposicionar o scroll e.
+   *
+   * Aqui nao se DESLIGA o refresh (isso deixaria os triggers desalinhados):
+   * ele e ADIADO ate o scroll ficar parado ~250ms, e chamadas seguidas sao
+   * agrupadas numa so. O trabalho continua acontecendo, so nao no meio do
+   * gesto.
+   *
+   * Gated em (pointer: coarse) — no desktop o refresh continua imediato.
+   * ------------------------------------------------------------------- */
+  if (isCoarse) {
+    (function deferRefreshWhileScrolling() {
+      var IDLE_MS = 250;
+      var lastScrollAt = 0;
+      var pending = false;
+      var timer = null;
+      var origRefresh = null;
+
+      try {
+        window.addEventListener('scroll', function () {
+          lastScrollAt = Date.now();
+        }, { passive: true });
+      } catch (e) { return; }
+
+      function runNow() {
+        pending = false;
+        try { if (origRefresh) origRefresh(); } catch (e) {}
+      }
+
+      function schedule() {
+        clearTimeout(timer);
+        timer = setTimeout(function () {
+          if (Date.now() - lastScrollAt < IDLE_MS) { schedule(); return; }
+          if (pending) runNow();
+        }, IDLE_MS + 50);
+      }
+
+      var tries = 0;
+      var wait = setInterval(function () {
+        tries++;
+        try {
+          var ST = window.ScrollTrigger;
+          if (ST && typeof ST.refresh === 'function' && !ST.__sxDeferred) {
+            origRefresh = ST.refresh.bind(ST);
+            ST.refresh = function () {
+              if (Date.now() - lastScrollAt >= IDLE_MS) {
+                return origRefresh.apply(null, arguments);
+              }
+              // scroll em curso: nao mexer na posicao agora
+              pending = true;
+              window.__sxRefreshDeferred = (window.__sxRefreshDeferred || 0) + 1;
+              schedule();
+            };
+            ST.__sxDeferred = true;
+            clearInterval(wait);
+          }
+        } catch (e) {}
+        if (tries > 200) clearInterval(wait);
+      }, 100);
+    })();
+  }
+
 })();
