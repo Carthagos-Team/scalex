@@ -230,7 +230,9 @@
 
         body.textContent =
           'REFRESH=' + refreshCount + ' (' + ago(lastRefreshAt) + ')' +
-          '  PROG=' + progCount + ' (' + ago(lastProgAt) + ')\n' +
+          '  PROG=' + progCount + ' (' + ago(lastProgAt) + ')' +
+          (typeof window.__sxRefreshDeferred === 'number'
+            ? '  ADIADOS=' + window.__sxRefreshDeferred : '  ADIADOS=off') + '\n' +
           'rAF pior=' + Math.round(maxGap) + 'ms  >100=' + gaps100 +
           '  bloq=' + (blockedTotal / 1000).toFixed(1) + 's' +
           '  img=' + pend +
