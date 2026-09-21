@@ -100,60 +100,15 @@
   if (!isMobile) return;
 
   /* ---------------------------------------------------------------------
-   * [A2] Badges Share/Support/Source: 3 Lotties com renderer SVG, autoplay
-   * e loop=0 — tocam UMA vez, na primeira vez que entram na tela, e nunca
-   * mais. Renderer SVG repinta a árvore DOM a cada frame. Custo one-shot =
-   * exatamente o sintoma "só trava na primeira descida". Bloquear só esses
-   * 3 arquivos levou os frames longos de 9/2/1 para 0/0/0.
-   *
-   * O que NÃO funciona (testado):
-   *   - remover data-animation-type, como foi feito no depth-tiles: o badge
-   *     fica invisível;
-   *   - só data-autoplay="0": o badge fica EM BRANCO, porque o frame 0 da
-   *     animação é vazio.
-   *
-   * O que funciona: autoplay=0 + pular para o último frame pela própria API
-   * de lottie do Webflow. Verificado por screenshot — o resultado é
-   * visualmente idêntico ao estado final de hoje.
+   * [A2] foi removido em 2026-09-21 (revertido a pedido do usuário, depois
+   * que o A4 confirmou resolver o travamento sem depender do Lottie estar
+   * congelado). Os badges Share/Support/Source voltam a tocar a animação
+   * normalmente. Risco residual não medido isoladamente: no teste original
+   * (antes do A4 existir), bloquear os 3 arquivos .lottie reduziu frames
+   * longos de 9/2/1 para 0/0/0 — sinal de que a animação tem algum custo
+   * de main thread. Se voltar jank visível especificamente nesses badges,
+   * este é o primeiro lugar a olhar (ver histórico do commit no repo).
    * ------------------------------------------------------------------- */
-  var BADGE = '.carry_step-icon';
-
-  onReady(function () {
-    try {
-      document.querySelectorAll(BADGE + '[data-animation-type="lottie"]').forEach(function (el) {
-        el.setAttribute('data-autoplay', '0');
-      });
-    } catch (e) {}
-  });
-
-  (function freezeBadgeLotties() {
-    var done = (typeof WeakSet === 'function') ? new WeakSet() : null;
-    var tries = 0;
-    var MAX = 300; // ~60s a cada 200ms: cobre o lottie que só registra ao entrar na tela
-
-    var timer = setInterval(function () {
-      tries++;
-      var anims = null;
-
-      try {
-        var L = window.Webflow && window.Webflow.require && window.Webflow.require('lottie');
-        anims = L && L.lottie && L.lottie.getRegisteredAnimations();
-      } catch (e) {}
-
-      if (anims && anims.length) {
-        anims.forEach(function (a) {
-          try {
-            if (!a.wrapper || !a.wrapper.closest || !a.wrapper.closest(BADGE)) return;
-            if (done && done.has(a)) return;
-            a.goToAndStop(Math.max(0, (a.totalFrames || 1) - 1), true);
-            if (done) done.add(a);
-          } catch (e) {}
-        });
-      }
-
-      if (tries >= MAX) clearInterval(timer);
-    }, 200);
-  })();
 
   /* ---------------------------------------------------------------------
    * [A1] Imagens lazy.
